@@ -1,0 +1,54 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.60'
+    ext.anko_version = '0.8.2'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        // kotlin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // kotlin-android-extensions
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        // tinkersupport插件, 其中lastest.release指拉取最新版本，也可以指定明确版本号，例如1.0.4
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
+        // greendao
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        // github
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'http://dl.bintray.com/dev-fingerlinks/maven'
+        }
+        mavenCentral()
+    }
+}
+
+ext {
+    // 编译sdk版本
+    compileSdkVersion = 28
+    // 最小支持API版本
+    minSdkVersion = 19
+    // 目标API版本
+    targetSdkVersion = 28
+
+    // 应用id
+//    applicationId = "com.example.lh.lhdemo"
+    versionCode = 202090
+    versionName = "2.2.9"
+    // 平台参数(分号分割，不能有空格：armeabi-v7a;x86;armeabi)
+    abiFilters = 'armeabi-v7a'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
